@@ -43,8 +43,10 @@ class MyApp extends StatelessWidget {
           buttonTheme: ButtonThemeData()
           // primarySwatch: Colors.green,
           ),
-      home: CategoriesPage(),
-      routes: {'/category-meals': (ctx) => CategoryMealsPage()},
+      routes: {
+        CategoriesPage.routeName: (_) => CategoriesPage(),
+        CategoryMealsPage.routeName: (_) => CategoryMealsPage(),
+      },
     );
   }
 }
