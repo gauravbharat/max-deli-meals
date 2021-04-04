@@ -50,11 +50,20 @@ class MyApp extends StatelessWidget {
         MealDetailPage.routeName: (_) => MealDetailPage(),
       },
       // Use onGenerateRoute for dynamic routes or conditional display of routes on settings.name
+      // It takes a funciton which executes for any named navigation action (= pushNamed()) for which
+      // no registered route was found in the routes table. You should return a navigation action i.e. the
+      // MaterialPageRoute in onGenerateRoute
+      // onGenerateRoute is your fallback/ option to have more control about the creation + configuration of
+      // routing actions (= MaterialPageRoute that then loads a specific screen widget).
       // onGenerateRoute: (settings) {},
+
       //  Use onUnknownRoute for undefined routes, fallback to 404 or home page to avoid crash
       onUnknownRoute: (settings) {
         return MaterialPageRoute(builder: (_) => CategoriesPage());
       },
+
+      //  onGenerateRoute executes for any unregistered named route,
+      //  onUnknownRoute executes if onGenerateRoute isn't defined or doesn't return a valid navigation action
     );
   }
 }
