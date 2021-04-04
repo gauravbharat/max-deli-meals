@@ -49,6 +49,12 @@ class MyApp extends StatelessWidget {
         CategoryMealsPage.routeName: (_) => CategoryMealsPage(),
         MealDetailPage.routeName: (_) => MealDetailPage(),
       },
+      // Use onGenerateRoute for dynamic routes or conditional display of routes on settings.name
+      // onGenerateRoute: (settings) {},
+      //  Use onUnknownRoute for undefined routes, fallback to 404 or home page to avoid crash
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (_) => CategoriesPage());
+      },
     );
   }
 }
