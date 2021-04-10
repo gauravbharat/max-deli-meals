@@ -15,6 +15,12 @@ class MealDetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('${selectedMeal.title}'),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -46,23 +52,24 @@ class MealDetailPage extends StatelessWidget {
                 context),
             buildSectionTitle(context, 'Steps'),
             buildListContainer(
-                ListView.builder(
-                  itemCount: selectedMeal.steps.length,
-                  itemBuilder: (ctx, index) => Column(
-                    children: [
-                      ListTile(
-                        leading: CircleAvatar(
-                          child: Text('# ${(index + 1)}'),
-                        ),
-                        title: Text(
-                          selectedMeal.steps[index],
-                        ),
+              ListView.builder(
+                itemCount: selectedMeal.steps.length,
+                itemBuilder: (ctx, index) => Column(
+                  children: [
+                    ListTile(
+                      leading: CircleAvatar(
+                        child: Text('# ${(index + 1)}'),
                       ),
-                      Divider(),
-                    ],
-                  ),
+                      title: Text(
+                        selectedMeal.steps[index],
+                      ),
+                    ),
+                    Divider(),
+                  ],
                 ),
-                context),
+              ),
+              context,
+            ),
           ],
         ),
       ),
