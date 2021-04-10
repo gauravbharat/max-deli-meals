@@ -1,5 +1,6 @@
 import 'package:deli/pages/categories_page.dart';
 import 'package:deli/pages/category_meals_page.dart';
+import 'package:deli/pages/filters_page.dart';
 import 'package:deli/pages/meal_detail_page.dart';
 import 'package:deli/pages/tabs_page.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
           accentColor: Color(0xFFf9bc60),
           // cardColor: Color(0xFFabd1c6),
           highlightColor: Color(0xFFf9bc60),
-          canvasColor: Color(0xFFabd1c6),
+          canvasColor: Color(0xffd7d9d8),
+          scaffoldBackgroundColor: Color(0xffd7d9d8),
           fontFamily: 'Raleway',
           textTheme: ThemeData.light().textTheme.copyWith(
               bodyText2: TextStyle(color: Color(0xFF001e1d)),
@@ -49,6 +51,7 @@ class MyApp extends StatelessWidget {
         CategoriesPage.routeName: (_) => TabPage(),
         CategoryMealsPage.routeName: (_) => CategoryMealsPage(),
         MealDetailPage.routeName: (_) => MealDetailPage(),
+        FiltersPage.routeName: (_) => FiltersPage(),
       },
       // Use onGenerateRoute for dynamic routes or conditional display of routes on settings.name
       // It takes a funciton which executes for any named navigation action (= pushNamed()) for which

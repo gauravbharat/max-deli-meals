@@ -1,5 +1,6 @@
 import 'package:deli/pages/categories_page.dart';
 import 'package:deli/pages/favourites_page.dart';
+import 'package:deli/widgets/main_drawer.dart';
 import 'package:flutter/material.dart';
 
 class TabPage extends StatefulWidget {
@@ -33,6 +34,7 @@ class _TabPageState extends State<TabPage> {
       appBar: AppBar(
         title: Text(_pages[_selectedPageIndex]['title']),
       ),
+      drawer: MainDrawer(),
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
