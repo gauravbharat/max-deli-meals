@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 
-class FavouritesPage extends StatefulWidget {
-  @override
-  _FavouritesPageState createState() => _FavouritesPageState();
-}
+import 'package:deli/models/meal.dart';
+import 'package:deli/widgets/meals_list.dart';
 
-class _FavouritesPageState extends State<FavouritesPage> {
+class FavouritesPage extends StatelessWidget {
+  final List<Meal> favouriteMeals;
+  FavouritesPage(this.favouriteMeals);
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Favourites Page'),
-    );
+    if (favouriteMeals.isEmpty) {
+      return Center(
+        child: Text('You have no favourites yet - start adding some!'),
+      );
+    }
+
+    return MealsList(mealsList: favouriteMeals);
   }
 }

@@ -5,6 +5,11 @@ import 'package:flutter/material.dart';
 class MealDetailPage extends StatelessWidget {
   static const routeName = '/category-meal-detail';
 
+  final Function isFavourite;
+  final Function toggleFavouriteHandler;
+
+  MealDetailPage(this.isFavourite, this.toggleFavouriteHandler);
+
   @override
   Widget build(BuildContext context) {
     final String mealId = ModalRoute.of(context).settings.arguments as String;
@@ -16,9 +21,14 @@ class MealDetailPage extends StatelessWidget {
         title: Text('${selectedMeal.title}'),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.arrow_back),
+        child: Icon(
+          isFavourite(selectedMeal.id)
+              ? Icons.favorite
+              : Icons.favorite_outline,
+          color: Theme.of(context).primaryColor,
+        ),
         onPressed: () {
-          Navigator.pop(context);
+          toggleFavouriteHandler(selectedMeal.id);
         },
       ),
       body: SingleChildScrollView(

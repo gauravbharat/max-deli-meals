@@ -37,7 +37,7 @@ class _FiltersPageState extends State<FiltersPage> {
           Container(
             padding: EdgeInsets.all(20.0),
             child: Text(
-              'Adujust your meal selection.',
+              'Adjust your meal selection.',
               style: Theme.of(context).textTheme.headline6,
             ),
           ),
