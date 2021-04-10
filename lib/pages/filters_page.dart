@@ -4,22 +4,33 @@ import 'package:flutter/material.dart';
 class FiltersPage extends StatefulWidget {
   static const routeName = "/filters";
 
+  final Map<String, bool> filters;
+  final Function saveFilters;
+
+  FiltersPage(this.filters, this.saveFilters);
+
   @override
   _FiltersPageState createState() => _FiltersPageState();
 }
 
 class _FiltersPageState extends State<FiltersPage> {
-  bool _glutenFree = false;
-  bool _vegetarian = false;
-  bool _vegan = false;
-  bool _lactoseFree = false;
+  Map<String, bool> _currentFilters;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentFilters = {...widget.filters};
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Your Filters'),
-      ),
+      appBar: AppBar(title: Text('Your Filters'), actions: [
+        IconButton(
+          icon: Icon(Icons.save),
+          onPressed: () => widget.saveFilters(_currentFilters),
+        ),
+      ]),
       drawer: MainDrawer(),
       body: Column(
         children: [
@@ -38,10 +49,10 @@ class _FiltersPageState extends State<FiltersPage> {
                   context: context,
                   titleText: 'Gluten-free',
                   descriptionText: 'Only include gluten-free meals.',
-                  value: _glutenFree,
+                  value: _currentFilters['gluten'],
                   updateValueHandler: (_) {
                     setState(() {
-                      _glutenFree = !_glutenFree;
+                      _currentFilters['gluten'] = !_currentFilters['gluten'];
                     });
                   },
                 ),
@@ -49,10 +60,10 @@ class _FiltersPageState extends State<FiltersPage> {
                   context: context,
                   titleText: 'Lactose-free',
                   descriptionText: 'Only include lactose-free meals.',
-                  value: _lactoseFree,
+                  value: _currentFilters['lactose'],
                   updateValueHandler: (_) {
                     setState(() {
-                      _lactoseFree = !_lactoseFree;
+                      _currentFilters['lactose'] = !_currentFilters['lactose'];
                     });
                   },
                 ),
@@ -60,10 +71,11 @@ class _FiltersPageState extends State<FiltersPage> {
                   context: context,
                   titleText: 'Vegetarian',
                   descriptionText: 'Only include vegetarian meals.',
-                  value: _vegetarian,
+                  value: _currentFilters['vegetarian'],
                   updateValueHandler: (_) {
                     setState(() {
-                      _vegetarian = !_vegetarian;
+                      _currentFilters['vegetarian'] =
+                          !_currentFilters['vegetarian'];
                     });
                   },
                 ),
@@ -71,10 +83,10 @@ class _FiltersPageState extends State<FiltersPage> {
                   context: context,
                   titleText: 'Vegan',
                   descriptionText: 'Only include vegan meals.',
-                  value: _vegan,
+                  value: _currentFilters['vegan'],
                   updateValueHandler: (_) {
                     setState(() {
-                      _vegan = !_vegan;
+                      _currentFilters['vegan'] = !_currentFilters['vegan'];
                     });
                   },
                 ),

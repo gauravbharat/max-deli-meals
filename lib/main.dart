@@ -1,15 +1,57 @@
+import 'package:flutter/material.dart';
+
+import 'package:deli/dummy_data.dart';
+import 'package:deli/models/meal.dart';
 import 'package:deli/pages/categories_page.dart';
 import 'package:deli/pages/category_meals_page.dart';
 import 'package:deli/pages/filters_page.dart';
 import 'package:deli/pages/meal_detail_page.dart';
 import 'package:deli/pages/tabs_page.dart';
-import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Map<String, bool> _filters = {
+    'gluten': false,
+    'lactose': false,
+    'vegan': false,
+    'vegetarian': false,
+  };
+
+  List<Meal> _availableMeals = DUMMY_MEALS;
+
+  void _setFilters(Map<String, bool> filterData) {
+    setState(() {
+      _filters = filterData;
+      _availableMeals = DUMMY_MEALS.where((meal) {
+        if (_filters['gluten'] && !meal.isGlutenFree) {
+          return false;
+        }
+
+        if (_filters['lactose'] && !meal.isLactoseFree) {
+          return false;
+        }
+
+        if (_filters['vegan'] && !meal.isVegan) {
+          return false;
+        }
+
+        if (_filters['vegetarian'] && !meal.isVegetarian) {
+          return false;
+        }
+
+        return true;
+      }).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -49,9 +91,9 @@ class MyApp extends StatelessWidget {
           ),
       routes: {
         CategoriesPage.routeName: (_) => TabPage(),
-        CategoryMealsPage.routeName: (_) => CategoryMealsPage(),
+        CategoryMealsPage.routeName: (_) => CategoryMealsPage(_availableMeals),
         MealDetailPage.routeName: (_) => MealDetailPage(),
-        FiltersPage.routeName: (_) => FiltersPage(),
+        FiltersPage.routeName: (_) => FiltersPage({..._filters}, _setFilters),
       },
       // Use onGenerateRoute for dynamic routes or conditional display of routes on settings.name
       // It takes a funciton which executes for any named navigation action (= pushNamed()) for which
