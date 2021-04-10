@@ -1,3 +1,4 @@
+import 'package:deli/widgets/main_drawer.dart';
 import 'package:flutter/material.dart';
 
 class FiltersPage extends StatelessWidget {
@@ -7,8 +8,9 @@ class FiltersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Filters'),
+        title: Text('Your Filters'),
       ),
+      drawer: MainDrawer(),
       body: Center(
         child: Text('Filters Page'),
       ),

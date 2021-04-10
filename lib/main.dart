@@ -34,8 +34,8 @@ class MyApp extends StatelessWidget {
           accentColor: Color(0xFFf9bc60),
           // cardColor: Color(0xFFabd1c6),
           highlightColor: Color(0xFFf9bc60),
-          canvasColor: Color(0xffd7d9d8),
-          scaffoldBackgroundColor: Color(0xffd7d9d8),
+          canvasColor: Color(0xffddefe6),
+          scaffoldBackgroundColor: Color(0xffddefe6),
           fontFamily: 'Raleway',
           textTheme: ThemeData.light().textTheme.copyWith(
               bodyText2: TextStyle(color: Color(0xFF001e1d)),
